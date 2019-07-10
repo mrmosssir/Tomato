@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid" id="app">
+  <div class="w-100" style="height: 100vh;" id="app">
     <div class="row">
       <div class="col-8 bg-primary" style="height: 100vh;">
         <div class="w-445 ml-85 mt-50">
@@ -73,17 +73,17 @@
       <div class="col-4 bg-third" style="height: 100vh;">
         <div class="function-bar h-100">
           <div class="text-right">
-            <a href="#">
+            <a href="#" @click.prevent="openOption()">
               <i class="material-icons">
               list
               </i>
             </a>
-            <a href="#">
+            <a href="#" @click.prevent="openOption()">
               <i class="material-icons">
                 insert_chart
               </i>
             </a>
-            <a href="#">
+            <a href="#" @click.prevent="openOption()">
               <i class="material-icons">
                 library_music
               </i>
@@ -93,12 +93,28 @@
         </div>
       </div>
     </div>
+    <Option :open-enabled="optionOpen"></Option>
   </div>
 </template>
 
 <script>
+import Option from './components/Option';
+
 export default {
   name: 'App',
+  data() {
+    return {
+      optionOpen: false,
+    };
+  },
+  components: {
+    Option,
+  },
+  methods: {
+    openOption() {
+      this.optionOpen = true;
+    },
+  },
 };
 </script>
 

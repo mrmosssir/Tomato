@@ -1,0 +1,69 @@
+.option {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    transform: translate(100%, 0);
+    transition: transform 3s;
+}
+.option-active {
+    transform: translate(0, 0);
+    transition: transform 3s;
+}
+.option-list {
+    display: flex;
+    color: $transparent-white;
+    align-items: center;
+    font-weight: bold;
+    text-decoration: none !important;
+    margin-bottom: 36px;
+    &:hover {
+        &, i {
+            color: $secondary;
+        }
+    }
+    &, i {
+        font-size: 36px;
+    }
+}
+.option-clock {
+    @include draw-circle(350px, 0px, $primary);
+    flex-direction: column;
+    justify-content: start; 
+    background: $primary;
+    transform: translate(0, 50%);
+    position: relative;
+    .option-clock-time {
+        font-size: 64px;
+        font-weight: bold;
+        color: $secondary;
+        margin-top: 50px;
+        margin-bottom: 0;
+    }
+    .option-clock-title {
+        font-weight: bold;
+        color: $third;
+        transform: translate(0, -50%);
+    }
+}
+.option-play-button-back {
+    @include draw-circle(116px, 0px, $third);
+    background: $third;
+    position: absolute;
+    top: 0;
+    transform: translate(0, -50%);
+}
+.option-play-button-outline {
+    @include draw-circle(103px, 2px, $secondary);
+    .option-play-button {
+        @include draw-circle(90px, 0px, $secondary);
+        background: $secondary;
+        i {
+            font-size: 60px;
+            color: $white;
+        }
+    }
+}
