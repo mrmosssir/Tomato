@@ -1,0 +1,19 @@
+ul.todolist {
+    list-style: none;
+    padding: 0px;
+}
+li.todolist-item {
+    display: flex;
+    align-items: center;
+    color: $third;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $transparent-third;
+    @include checkCircle(24px, 16px);
+    span {
+        @include draw-circle(24px, 2px, $third);
+        cursor: pointer;
+        margin-left: auto;
+    }
+}

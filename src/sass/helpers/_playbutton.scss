@@ -1,0 +1,32 @@
+.play-button-outline {
+    @include draw-circle(540px, 4px, $secondary);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    cursor: pointer;
+    margin-right: -270px;
+    z-index: 2;
+}
+.play-button {
+    @include draw-circle(510px, 0px, $secondary);
+    background: $secondary;
+}
+.play-button-center {
+    @include draw-circle(96px, 2px, $white);
+    background: $white;
+    i {
+        font-size: 64px;
+        color: $secondary;
+    }
+}
+.play-button-dot {
+    display: block;
+    position: absolute;
+    top: 294px;
+    left: 324px;
+    width: 24px;
+    height: 24px;
+    border: 6px solid $secondary;
+    background: $white;
+}

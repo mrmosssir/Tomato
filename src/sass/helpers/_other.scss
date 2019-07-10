@@ -1,0 +1,6 @@
+.list-input {
+    &::-webkit-input-placeholder {
+        color: $secondary;
+        font-style: italic;
+    }
+}

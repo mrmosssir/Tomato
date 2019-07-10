@@ -1,0 +1,35 @@
+@mixin checkCircle($size, $font-size) {
+    input[type="checkbox"] {
+        display: none;
+        &:checked {
+            & ~ label {
+                background: $third;
+            }
+            & ~ label i {
+                display: block;
+            }
+        }
+    }
+    label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include draw-circle($size, 2px, $third);
+        cursor: pointer;
+        margin: 0px;
+        i {
+            display: none;
+            font-size: $font-size;
+            font-weight: bold;
+        }
+    }
+}
+@mixin draw-circle($size, $weight, $color) {
+    display: flex;
+    width: $size;
+    height: $size;
+    justify-content: center;
+    align-items: center;
+    border: $weight solid $color;
+    border-radius: 50%;
+}

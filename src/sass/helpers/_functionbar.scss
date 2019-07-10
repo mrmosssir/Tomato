@@ -1,0 +1,24 @@
+.function-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: $third;
+    padding: 50px 85px;
+    a {
+        text-decoration: none;
+        i {
+            display: block;
+            font-size: 36px;
+            color: $white;
+            margin-bottom: 48px;
+        }
+    }
+    p {
+        color: $white;
+        font-weight: bold;
+        font-size: 32px;
+        text-align: center;
+        transform: translate(calc(50% - 20px), -150%) rotate(90deg);
+        margin-bottom: 0;
+    }
+}
