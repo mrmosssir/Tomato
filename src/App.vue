@@ -3,11 +3,11 @@
     <div class="row">
       <div class="col-8 bg-primary" style="height: 100vh;">
         <div class="w-445 ml-85 mt-50">
-          <div class="d-flex">
+          <div class="d-flex bg-white">
             <input class="border-0 w-100 p-3 text-secondary list-input" type="text"
                    placeholder="ADD A NEW MISSION...">
             <button class="d-flex border-0 p-3">
-              <i class="material-icons text-secondary bg-white">
+              <i class="material-icons text-secondary">
                 add
               </i>
             </button>

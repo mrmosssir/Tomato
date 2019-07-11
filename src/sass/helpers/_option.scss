@@ -67,3 +67,15 @@
         }
     }
 }
+.option-bar {
+    display: flex;
+    height: 45px;
+    color: white;
+    background: $transparent-white;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 45px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-bottom: 16px;
+}

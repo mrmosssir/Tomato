@@ -1,0 +1,29 @@
+.analytics-data {
+    p {
+        font-weight: bold;
+        color: $transparent-white;
+        margin: 0px;
+    }
+    strong {
+        font-weight: bold;
+        font-size: 64px;
+        color: $secondary;
+    }
+}
+.analytics-title {
+    color: white !important;
+}
+.analytics-date-picker {
+    font-size: 16px;
+    margin-left: auto;
+    &::before {
+        content: '<';
+        margin-right: 8px;
+        cursor: pointer;
+    }
+    &::after {
+        content: '>';
+        margin-left: 8px;
+        cursor: pointer;
+    }
+}

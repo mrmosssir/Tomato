@@ -1,0 +1,38 @@
+.ringtones-item {
+    display: flex;
+    align-items: center;
+    * {
+        cursor: pointer;
+    }
+    .ringtones-check-outline {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+    }
+    .ringtones-check {
+        display: none;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: $secondary;
+    }
+    .ringtones-check-content {
+        font-weight: bold;
+        color: $white;
+    }
+    input[type="checkbox"] {
+        display: none;
+        &:checked {
+            & ~ .ringtones-check-outline {
+                border-color: $secondary;
+            }
+            & ~ .ringtones-check-outline .ringtones-check {
+                display: block;
+            }
+        }
+    }
+}
