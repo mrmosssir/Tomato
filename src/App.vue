@@ -7,7 +7,7 @@
             <input class="border-0 w-100 p-3 text-secondary list-input" type="text"
                    placeholder="ADD A NEW MISSION...">
             <button class="d-flex border-0 p-3">
-              <i class="material-icons text-secondary">
+              <i class="material-icons text-secondary bg-white">
                 add
               </i>
             </button>
@@ -78,7 +78,7 @@
               list
               </i>
             </a>
-            <a href="#" @click.prevent="openOption()">
+            <!-- <a href="#" @click.prevent="openOption()">
               <i class="material-icons">
                 insert_chart
               </i>
@@ -87,17 +87,18 @@
               <i class="material-icons">
                 library_music
               </i>
-            </a>
+            </a> -->
           </div>
           <p>POMODORO</p>
         </div>
       </div>
     </div>
-    <Option :open-enabled="optionOpen"></Option>
+    <Option></Option>
   </div>
 </template>
 
 <script>
+import $ from 'jquery';
 import Option from './components/Option';
 
 export default {
@@ -112,7 +113,7 @@ export default {
   },
   methods: {
     openOption() {
-      this.optionOpen = true;
+      $('.option').toggleClass('option-active');
     },
   },
 };

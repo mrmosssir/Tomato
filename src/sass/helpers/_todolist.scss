@@ -17,3 +17,17 @@ li.todolist-item {
         margin-left: auto;
     }
 }
+.todolist-item-white {
+    color: $white !important;
+    border-bottom: 1px solid $transparent-white !important;
+    * {
+        border-color: $white !important;
+    }
+}
+.todolist-hidden {
+    height: 0px;
+    overflow: hidden;
+}
+.todolist-show {
+    height: 100% !important;
+}

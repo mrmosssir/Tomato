@@ -76,7 +76,7 @@ $danger:        $red !default;
 $light:         $gray-100 !default;
 $dark:          $gray-800 !default;
 $transparent-third: rgba(0, 49, 100, 0.2);
-$transparent-white: rgba(255, 255, 255, 0.3);
+$transparent-white: rgba(255, 255, 255, 0.2);
 
 $theme-colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
@@ -91,6 +91,7 @@ $theme-colors: map-merge(
     "danger":     $danger,
     "light":      $light,
     "dark":       $dark,
+    "transparent-white": $transparent-white,
   ),
   $theme-colors
 );
