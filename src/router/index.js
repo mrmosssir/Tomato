@@ -1,15 +1,15 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Option from '@/components/Option';
+import Todolist from '@/components/Todolist';
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'Option',
-      component: Option,
+      path: '/todo',
+      name: 'Todolist',
+      component: Todolist,
     },
   ],
 });

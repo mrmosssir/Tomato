@@ -73,46 +73,78 @@
       <div class="col-4 bg-third" style="height: 100vh;">
         <div class="function-bar h-100">
           <div class="text-right">
-            <a href="#" @click.prevent="openOption()">
+            <a href="/#/todo" @click="toggleOption()">
               <i class="material-icons">
               list
               </i>
             </a>
-            <!-- <a href="#" @click.prevent="openOption()">
-              <i class="material-icons">
-                insert_chart
-              </i>
-            </a>
-            <a href="#" @click.prevent="openOption()">
-              <i class="material-icons">
-                library_music
-              </i>
-            </a> -->
           </div>
           <p>POMODORO</p>
         </div>
       </div>
     </div>
-    <Option></Option>
+    <div class="option bg-third row">
+      <div class="col-5 pt-50 pl-85 h-100 d-flex flex-column justify-content-between">
+        <div>
+          <a href="/#/todo" class="option-list">
+            <i class="material-icons mr-3">
+            list
+            </i>
+            TO-DO LIST
+          </a>
+          <a href="/#/analytics" class="option-list">
+            <i class="material-icons mr-3">
+              insert_chart
+            </i>
+            ANALYTICS
+          </a>
+          <a href="/#/ringtones" class="option-list">
+            <i class="material-icons mr-3">
+              library_music
+            </i>
+            RINGTONES
+          </a>
+        </div>
+        <div class="option-clock">
+          <div class="option-play-button-back">
+            <div class="option-play-button-outline">
+              <div class="option-play-button">
+                <i class="material-icons">play_arrow</i>
+              </div>
+            </div>
+          </div>
+          <p class="option-clock-time">
+            25:00
+          </p>
+          <p class="option-clock-title">
+            THE FIRST THIN TO DO TODAY
+          </p>
+        </div>
+      </div>
+      <div class="col-4">
+        <router-view></router-view>
+      </div>
+      <div class="col-3 d-flex flex-column align-items-center justify-content-between">
+        <div class="function-bar h-100">
+          <div class="text-right">
+            <a href="#" class="bg-third border-0 mt-50 p-0" @click.prevent="toggleOption()">
+              <i class="material-icons text-white" style="font-size: 48px;">clear</i>
+            </a>
+          </div>
+          <p>POMODORO</p>
+        </div>
+      </div>
+  </div>
   </div>
 </template>
 
 <script>
 import $ from 'jquery';
-import Option from './components/Option';
 
 export default {
   name: 'App',
-  data() {
-    return {
-      optionOpen: false,
-    };
-  },
-  components: {
-    Option,
-  },
   methods: {
-    openOption() {
+    toggleOption() {
       $('.option').toggleClass('option-active');
     },
   },
