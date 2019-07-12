@@ -3,7 +3,7 @@
         <div class="d-flex mt-50">
           <input class="border-0 w-100 p-3 text-secondary list-input" type="text"
                    placeholder="ADD A NEW MISSION...">
-            <button class="d-flex border-0 p-3">
+            <button class="d-flex border-0 p-3 bg-white">
               <i class="material-icons text-secondary bg-white">
                 add
               </i>

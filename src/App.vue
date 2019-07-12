@@ -3,10 +3,10 @@
     <div class="row">
       <div class="col-8 bg-primary" style="height: 100vh;">
         <div class="w-445 ml-85 mt-50">
-          <div class="d-flex bg-white">
+          <div class="d-flex">
             <input class="border-0 w-100 p-3 text-secondary list-input" type="text"
                    placeholder="ADD A NEW MISSION...">
-            <button class="d-flex border-0 p-3">
+            <button class="d-flex border-0 p-3 bg-white">
               <i class="material-icons text-secondary">
                 add
               </i>
@@ -86,24 +86,24 @@
     <div class="option bg-third row">
       <div class="col-5 pt-50 pl-85 h-100 d-flex flex-column justify-content-between">
         <div>
-          <a href="/#/todo" class="option-list">
+          <router-link to="/todo" class="option-list">
             <i class="material-icons mr-3">
             list
             </i>
             TO-DO LIST
-          </a>
-          <a href="/#/analytics" class="option-list">
+          </router-link>
+          <router-link to="/analytics" class="option-list">
             <i class="material-icons mr-3">
               insert_chart
             </i>
             ANALYTICS
-          </a>
-          <a href="/#/ringtones" class="option-list">
+          </router-link>
+          <router-link to="/ringtones" class="option-list">
             <i class="material-icons mr-3">
               library_music
             </i>
             RINGTONES
-          </a>
+          </router-link>
         </div>
         <div class="option-clock">
           <div class="option-play-button-back">
