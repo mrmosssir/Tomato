@@ -65,18 +65,37 @@
           </a>
         </div>
         <div class="play-button-outline" :class="{'play-button-blue': mode === 'break',
-             'play-button-start': timePlay}"
-             @click.prevent="timeStart()">
-          <div class="play-button">
-            <div class="play-button-center">
-              <i class="material-icons" v-if="!timePlay">
-                play_arrow
-              </i>
-              <i class="material-icons" v-if="timePlay">
-                pause
-              </i>
+             'play-button-start': timePlay}">
+          <div class="play-button-progress">
+            <div class="progress-left"
+                 :class="{'progress-enabled': timePlay}">
+              <div class="progress-left-main"
+                   :class="{'progress-blue': mode === 'break'}"
+                   :style="`transform: rotate(${rotateLeftStr})`">
+                <div class="progress-left-color"></div>
+              </div>
             </div>
-            <span class="play-button-dot"></span>
+            <div class="progress-right"
+                 :class="{'progress-enabled': timePlay}">
+              <div class="progress-right-main"
+                   :class="{'progress-blue': mode === 'break'}"
+                   :style="`transform: translate(-50%, 0) rotate(-${rotateRightStr})`">
+                <div class="progress-right-color"></div>
+              </div>
+            </div>
+            <div class="play-button">
+              <div class="play-button-center" v-if="!timePlay || stop" @click.prevent="timeStart()">
+                <i class="material-icons">
+                  play_arrow
+                </i>
+              </div>
+              <div class="play-button-center" v-if="timePlay && !stop" @click.prevent="stop = true">
+                <i class="material-icons">
+                  pause
+                </i>
+              </div>
+              <span class="play-button-dot"></span>
+            </div>
           </div>
         </div>
       </div>
@@ -126,7 +145,7 @@
             </div>
           </div>
           <p class="option-clock-time">
-            25:00
+            {{ displayTime }}
           </p>
           <p class="option-clock-title">
             THE FIRST THIN TO DO TODAY
@@ -158,11 +177,15 @@ export default {
   name: 'App',
   data() {
     return {
-      workTime: 5,
-      breakTime: 5,
-      displayTime: '25:00',
       mode: 'work',
+      time: 0,
+      workTime: 1500,
+      breakTime: 300,
+      displayTime: '25:00',
       timePlay: false,
+      rotateLeftStr: '',
+      rotateRightStr: '',
+      stop: false,
     };
   },
   methods: {
@@ -171,20 +194,41 @@ export default {
     },
     timeStart() {
       this.timePlay = true;
-      let time = this.workTime;
-      if (this.mode === 'break') {
-        time = this.breakTime;
+      if (!this.stop) {
+        this.time = this.workTime;
+        if (this.mode === 'break') {
+          this.time = this.breakTime;
+        }
       }
+      let time = this.time;
+      this.stop = false;
       const interval = setInterval(() => {
-        time -= 1;
-        if (time >= 0) {
+        if (!this.stop) {
+          time -= 1;
+          this.time = time;
+        } else {
+          clearInterval(interval);
+        }
+        if (time > 0) {
           this.displayTime = this.secToMin(time);
+          const passTime = this[`${this.mode}Time`] - time;
+          let bufferTime = time;
+          if (passTime > (this[`${this.mode}Time`] / 2)) {
+            bufferTime = (this[`${this.mode}Time`] / 2) - time;
+            this.rotateRightStr = this.rotateCal(bufferTime, this[`${this.mode}Time`] / 2);
+            // console.log(this.rotateRightStr);
+          } else {
+            this.rotateLeftStr = this.rotateCal(bufferTime, this[`${this.mode}Time`] / 2);
+          }
+          // console.log(this.rotateLeftStr)
         } else {
           clearInterval(interval);
           this.clockModeTransfer();
           this.timePlay = false;
         }
       }, 1000);
+      this.rotateLeftStr = '0deg';
+      this.rotateRightStr = '0deg';
     },
     clockModeTransfer() {
       if (this.mode === 'work') {
@@ -199,6 +243,9 @@ export default {
       const min = this.addZero(Math.floor(time / 60));
       const sec = this.addZero(time % 60);
       return `${min}:${sec}`;
+    },
+    rotateCal(currentTime, totalTime) {
+      return `${Math.floor((currentTime / totalTime) * 180)}deg`;
     },
     addZero(num) {
       if (parseInt(num, 10) < 10) {

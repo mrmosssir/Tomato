@@ -11,6 +11,7 @@
 .play-button {
     @include draw-circle(510px, 4px, $secondary);
     background: $secondary;
+    z-index: 4;
 }
 .play-button-center {
     @include draw-circle(96px, 2px, $white);
@@ -65,5 +66,63 @@
             background: $dark-blue !important;
         }
     }
-    
+}
+.play-button-progress {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+    .progress-left {
+        display: none;
+        width: 50%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        overflow: hidden;
+        .progress-left-main {
+            width: 200%;
+            height: 100%;
+            display: flex;
+        }
+    }
+    .progress-right {
+        display: none;
+        width: 50%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        overflow: hidden;
+        .progress-right-main {
+            width: 200%;
+            height: 100%;
+            transform: translate(-50%, 0);
+        }
+    }
+}
+.progress-left-color {
+    width: 50%;
+    height: 100%;
+    border-radius: 540px 0 0 540px;
+    background: $secondary;
+}
+.progress-right-color {
+    width: 50%;
+    height: 100%;
+    border-radius: 0 540px 540px 0;
+    background: $secondary;
+    position: absolute;
+    right: 0;
+}
+.progress-enabled {
+    display: block !important;
+    .progress-blue {
+        .progress-left-color, .progress-right-color {
+            background: $dark-blue !important;
+        }
+    }
 }
