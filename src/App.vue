@@ -73,7 +73,7 @@
       <div class="col-4 bg-third" style="height: 100vh;">
         <div class="function-bar h-100">
           <div class="text-right">
-            <a href="/#/todo" @click="toggleOption()">
+            <a href="#" @click.prevent="toggleOption()">
               <i class="material-icons">
               list
               </i>
@@ -86,7 +86,7 @@
     <div class="option bg-third row">
       <div class="col-5 pt-50 pl-85 h-100 d-flex flex-column justify-content-between">
         <div>
-          <router-link to="/todo" class="option-list">
+          <router-link to="/" class="option-list">
             <i class="material-icons mr-3">
             list
             </i>
