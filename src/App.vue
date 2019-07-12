@@ -1,9 +1,11 @@
 <template>
   <div class="w-100" style="height: 100vh;" id="app">
+    <!-- main part -->
     <div class="row">
-      <div class="col-8 bg-primary" style="height: 100vh;">
+      <div class="col-8 bg-primary" :class="{'bg-light-blue': mode === 'break'}"
+           style="height: 100vh;">
         <div class="w-445 ml-85 mt-50">
-          <div class="d-flex">
+          <div class="d-flex" :class="{'input-blue': mode === 'break'}">
             <input class="border-0 w-100 p-3 text-secondary list-input" type="text"
                    placeholder="ADD A NEW MISSION...">
             <button class="d-flex border-0 p-3 bg-white">
@@ -18,10 +20,12 @@
               <label for="done"><i class="material-icons text-white">check</i></label>
               <div class="digital-clock-title ml-3">
                 <h2>THE FIRST THING TO DO TODAY</h2>
-                <span></span>
+                <span :class="{'digital-count-play-blue': mode === 'break'}"></span>
               </div>
             </div>
-            <div class="digital-clock-time">25:00</div>
+            <div class="digital-clock-time" :class="{'text-dark-blue': mode === 'break'}">
+              {{ displayTime }}
+            </div>
           </div>
           <ul class="todolist">
             <li class="todolist-item">
@@ -55,15 +59,21 @@
               <span><i class="material-icons">play_arrow</i></span>
             </li>
           </ul>
-          <a href="#" class="d-block text-secondary font-weight-bold text-right cursor-pointer">
+          <a href="#" class="d-block text-secondary font-weight-bold text-right cursor-pointer"
+             :class="{'text-dark-blue': mode === 'break'}">
             MORE
           </a>
         </div>
-        <div class="play-button-outline">
+        <div class="play-button-outline" :class="{'play-button-blue': mode === 'break',
+             'play-button-start': timePlay}"
+             @click.prevent="timeStart()">
           <div class="play-button">
             <div class="play-button-center">
-              <i class="material-icons">
+              <i class="material-icons" v-if="!timePlay">
                 play_arrow
+              </i>
+              <i class="material-icons" v-if="timePlay">
+                pause
               </i>
             </div>
             <span class="play-button-dot"></span>
@@ -83,6 +93,8 @@
         </div>
       </div>
     </div>
+    <!-- main part -->
+    <!-- option part -->
     <div class="option bg-third row">
       <div class="col-5 pt-50 pl-85 h-100 d-flex flex-column justify-content-between">
         <div>
@@ -134,7 +146,8 @@
           <p>POMODORO</p>
         </div>
       </div>
-  </div>
+    </div>
+    <!-- option part -->
   </div>
 </template>
 
@@ -143,10 +156,59 @@ import $ from 'jquery';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      workTime: 5,
+      breakTime: 5,
+      displayTime: '25:00',
+      mode: 'work',
+      timePlay: false,
+    };
+  },
   methods: {
     toggleOption() {
       $('.option').toggleClass('option-active');
     },
+    timeStart() {
+      this.timePlay = true;
+      let time = this.workTime;
+      if (this.mode === 'break') {
+        time = this.breakTime;
+      }
+      const interval = setInterval(() => {
+        time -= 1;
+        if (time >= 0) {
+          this.displayTime = this.secToMin(time);
+        } else {
+          clearInterval(interval);
+          this.clockModeTransfer();
+          this.timePlay = false;
+        }
+      }, 1000);
+    },
+    clockModeTransfer() {
+      if (this.mode === 'work') {
+        this.mode = 'break';
+        this.displayTime = '05:00';
+      } else {
+        this.mode = 'work';
+        this.displayTime = '25:00';
+      }
+    },
+    secToMin(time) {
+      const min = this.addZero(Math.floor(time / 60));
+      const sec = this.addZero(time % 60);
+      return `${min}:${sec}`;
+    },
+    addZero(num) {
+      if (parseInt(num, 10) < 10) {
+        return `0${num}`;
+      }
+      return `${num}`;
+    },
+  },
+  created() {
+    this.secToMin(this.workTime);
   },
 };
 </script>

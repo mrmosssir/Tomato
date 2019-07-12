@@ -9,7 +9,7 @@
     z-index: 2;
 }
 .play-button {
-    @include draw-circle(510px, 0px, $secondary);
+    @include draw-circle(510px, 4px, $secondary);
     background: $secondary;
 }
 .play-button-center {
@@ -29,4 +29,41 @@
     height: 24px;
     border: 6px solid $secondary;
     background: $white;
+}
+.play-button-blue {
+    border-color: $dark-blue;
+    .play-button {
+        background: $dark-blue;
+        border-color: $dark-blue;
+    }
+    .play-button-center i {
+        color: $dark-blue;
+    }
+    .play-button-dot {
+        border-color: $dark-blue;
+    }
+}
+.play-button-start {
+    .play-button {
+        background: $white !important;
+    }
+    .play-button-center {
+        background: $secondary;
+        i {
+            color: $white !important;
+        }
+    }
+    .play-button-dot {
+        background: $secondary;
+        border-color: $white !important;
+    }
+    &.play-button-blue {
+        .play-button-center {
+            background: $dark-blue !important;
+        }
+        .play-button-dot {
+            background: $dark-blue !important;
+        }
+    }
+    
 }
